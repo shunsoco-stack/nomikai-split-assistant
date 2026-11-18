@@ -1,0 +1,131 @@
+/* 伝票・集金・共有 */
+.receipt {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+  background: #f1f4ec;
+  border: 1px solid #d8e0d1;
+  border-radius: 10px;
+  padding: 30px;
+  margin-bottom: 28px;
+}
+.receipt > div:first-child > span {
+  font-size: 12px;
+  color: #6a7964;
+}
+.receipt > div:first-child > strong {
+  display: block;
+  font-size: 38px;
+  color: var(--green);
+  margin-top: 6px;
+}
+.receipt-details p {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+.receipt-details .balance-check {
+  display: block;
+  border-top: 1px dashed #bbc9b2;
+  padding-top: 14px;
+  margin-bottom: 0;
+  font-size: 11px;
+  color: #648059;
+  overflow-wrap: anywhere;
+}
+.share-panel .actions {
+  margin: 22px 0 12px;
+}
+.share-panel small {
+  color: var(--muted);
+}
+.collection-row {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.collection-row:last-child {
+  border-bottom: 0;
+}
+.collection-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.collection-person small {
+  display: block;
+  color: var(--muted);
+}
+.collection-amount {
+  font-size: 22px;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.avatar {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-grid;
+  place-items: center;
+  color: #6f8060;
+  background: #eef2e8;
+  font-size: 12px;
+}
+.payment-controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+  margin: 14px 0 8px 48px;
+}
+.payment-controls .field {
+  max-width: 240px;
+  flex: 1;
+}
+.payment-date {
+  display: block;
+  color: var(--green);
+  margin-left: 48px;
+}
+.reminder-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 10px;
+}
+.shared-row {
+  border-bottom: 1px solid var(--line);
+  padding: 20px 0;
+}
+.shared-row:last-child {
+  border: 0;
+}
+.shared-row > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.shared-row h3 small {
+  display: block;
+  font-weight: 400;
+  color: var(--muted);
+}
+.shared-row > div > strong {
+  font-size: 22px;
+  color: var(--green);
+  white-space: nowrap;
+}
+.shared-row p {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+.feature-icon {
+  font-size: 28px;
+  color: var(--green);
+  display: block;
+  margin-bottom: 14px;
+}

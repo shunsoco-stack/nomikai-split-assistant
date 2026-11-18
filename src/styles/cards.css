@@ -1,0 +1,340 @@
+/* 概要と会のカード */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 34px;
+}
+.stat {
+  min-width: 0;
+  padding: 23px 24px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  background: white;
+}
+.stat > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.stat > strong {
+  display: block;
+  font-size: 30px;
+  line-height: 1.5;
+  letter-spacing: -0.03em;
+  margin: 7px 0;
+}
+.stat > strong em {
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: 6px;
+}
+.stat small {
+  color: #808676;
+  font-size: 10px;
+}
+.stat:first-child {
+  border-top: 3px solid #b68b4e;
+  padding-top: 21px;
+}
+.stat:first-child > strong {
+  color: #9b682d;
+}
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.event-card {
+  padding: 24px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 3px 6px #243b2403;
+  min-width: 0;
+}
+.event-card.collecting {
+  border-top: 3px solid #b88b4f;
+  padding-top: 22px;
+}
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+.badge.pending {
+  background: #fbf0db;
+  color: #9e732b;
+}
+.badge.planned,
+.badge.neutral {
+  background: #eef0e8;
+  color: #6c7b5d;
+}
+.badge.done {
+  background: #eef4ed;
+  color: #638363;
+}
+.date-label {
+  font-size: 11px;
+  color: #767d70;
+}
+.date-label small {
+  font-size: 10px;
+  margin-left: 6px;
+}
+.event-card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+.event-card h3 a:hover,
+.event-name:hover {
+  text-decoration: underline;
+}
+.venue {
+  color: #818777;
+  font-size: 11px;
+  margin-bottom: 20px;
+}
+.card-amount {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #f0f0e9;
+  padding-top: 17px;
+  margin-bottom: 18px;
+}
+.card-amount > span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.card-amount > strong {
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+.collection-progress > div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.collection-progress strong {
+  color: var(--amber);
+}
+progress {
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  border: 0;
+  background: #efeee6;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+}
+progress::-webkit-progress-bar {
+  background: #efeee6;
+}
+progress::-webkit-progress-value {
+  background: #a7b9a0;
+  border-radius: 4px;
+}
+progress::-moz-progress-bar {
+  background: #a7b9a0;
+}
+.upcoming-note {
+  min-height: 32px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  color: #8a917f;
+  background: #f7f8f2;
+}
+.card-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-top: 24px;
+}
+.card-actions > .button {
+  flex: 1;
+  justify-content: space-between;
+}
+
+/* 履歴と計算の表 */
+.history {
+  margin-top: 34px;
+}
+.table-scroll {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  white-space: nowrap;
+}
+th {
+  text-align: left;
+  padding: 13px 18px;
+  font-size: 10px;
+  font-weight: 500;
+  color: #808777;
+  background: #f5f6ef;
+  border-bottom: 1px solid var(--line);
+}
+td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #eeefe8;
+}
+tr:last-child td {
+  border-bottom: 0;
+}
+td small {
+  display: block;
+  color: #959a8c;
+  font-size: 10px;
+  margin-top: 3px;
+}
+.event-name {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.split-table .amount {
+  font-weight: 700;
+  color: var(--green);
+}
+.split-table td,
+.split-table th {
+  padding: 15px 12px;
+}
+.tip {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  background: #eff1e8;
+  padding: 22px;
+  border-radius: 8px;
+  margin-top: 28px;
+  color: #6d7962;
+}
+.tip > span {
+  font-size: 25px;
+}
+.tip p {
+  font-size: 10px;
+  margin: 0;
+  line-height: 1.9;
+}
+.tip strong {
+  font-size: 12px;
+}
+.tip a {
+  margin-left: auto;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+/* カードのレスポンシブ表示 */
+@media (max-width: 1100px) {
+  .stat {
+    padding: 18px 15px;
+  }
+  .stat:first-child {
+    padding-top: 16px;
+  }
+  .stat > strong {
+    font-size: 25px;
+  }
+  .event-card {
+    padding: 20px;
+  }
+  .event-card.collecting {
+    padding-top: 18px;
+  }
+  .date-label small {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .stat:first-child {
+    grid-column: 1 / -1;
+  }
+  .stat > strong {
+    font-size: 28px;
+  }
+  .stat small {
+    font-size: 9px;
+  }
+  .event-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .date-label small {
+    display: inline;
+  }
+  .tip {
+    padding: 16px;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .tip a {
+    display: none;
+  }
+  .receipt {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 24px 20px;
+  }
+  .receipt > div:first-child > strong {
+    font-size: 34px;
+  }
+  .payment-controls {
+    margin-left: 0;
+    gap: 14px;
+  }
+  .payment-date {
+    margin-left: 0;
+  }
+  .collection-amount {
+    font-size: 19px;
+  }
+  .collection-person {
+    gap: 8px;
+    font-size: 12px;
+  }
+  .reminder-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .shared-row > div > strong {
+    font-size: 19px;
+  }
+}
