@@ -141,7 +141,7 @@ const plans = [
   {
     offset: 290,
     monthEnd: false,
-    venue: "小料理 いと",
+    venue: "旬菜酒場 まどい",
     people: [7, 0, 9, 3, 12, 6, 5, 1, 15],
     late: 6,
     lateMinutes: 30,
@@ -177,15 +177,11 @@ export function seasonalName(date: string): string {
   if (month === 4 || month === 5) return "新しい仲間の歓迎会";
   if (month === 7 || month === 8) return "第二営業部 暑気払い";
   if (month === 1) return "第二営業部 新年会";
-  return "プロジェクト打ち上げ";
-}
-
-function venueFor(date: string, fallback: string): string {
-  const month = Number(date.slice(5, 7));
-  if (month === 7 || month === 8) return "炭火焼きと麦酒 こもれび";
-  if (month === 12 || month === 1) return "季節の鍋料理 雪あかり";
-  if (month === 3 || month === 4 || month === 5) return "和食と小皿 花むすび";
-  return fallback;
+  if (month === 2) return "冬の営業交流会";
+  if (month === 6) return "展示会 打ち上げ";
+  if (month === 9) return "上期おつかれさま会";
+  if (month === 10) return "新サービス公開 打ち上げ";
+  return "新システム導入 打ち上げ";
 }
 
 function makeParty(date: string, plan: (typeof plans)[number], id: string): Party {
@@ -195,7 +191,7 @@ function makeParty(date: string, plan: (typeof plans)[number], id: string): Part
     id,
     name,
     date,
-    venue: venueFor(date, plan.venue),
+    venue: plan.venue,
     start: plan.start,
     end: plan.end,
     total: plan.people.length * (premium ? 6120 : 4780) + plan.offset * 3 + 17,
@@ -225,9 +221,10 @@ export function createSeed(now: Date): Database {
     return makeParty(date, plan, `past-${plan.offset}`);
   });
   const active = makeParty(
-    addDays(today, -2),
+    previousFriday(today),
     {
       ...plans[0],
+      venue: "釜飯と肴 ほたる",
       people: [0, 1, 3, 5, 8, 2, 7, 11, 4, 6],
       note: "おつかれさまでした。残り3名の集金を確認しましょう。",
     },
@@ -236,10 +233,26 @@ export function createSeed(now: Date): Database {
   active.name = "第二営業部 おつかれさま会";
   const upcoming = makeParty(
     nextFriday(today),
-    { ...plans[3], note: "人数が確定したら会計予定額を更新してください。" },
+    {
+      ...plans[3],
+      note: "コース5,500円×10名＝55,000円の見込みです。人数・追加注文が確定したら会計を更新してください。",
+    },
     "upcoming",
   );
-  upcoming.name = `${seasonalName(upcoming.date)}・予定`;
+  upcoming.total = 5500 * upcoming.members.length;
+  // 同じ季節の会が重なる場合も、同名は2件までにする。
+  const nameCounts = new Map<string, number>();
+  for (const party of [...past, active, upcoming]) {
+    const name = party.name;
+    const candidates = [
+      name,
+      ...["営業企画チーム", "営業・開発合同", "有志", "同期"].map(
+        (group) => `${group} ${name.replace(/^第二営業部 /, "")}`,
+      ),
+    ];
+    party.name = candidates.find((candidate) => (nameCounts.get(candidate) ?? 0) < 2)!;
+    nameCounts.set(party.name, (nameCounts.get(party.name) ?? 0) + 1);
+  }
   for (const party of [...past, active]) {
     const result = split(party);
     party.members.forEach((member, position) => {

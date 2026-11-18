@@ -9,7 +9,7 @@ import { MemberEditor } from "./member-editor";
 import { RulesEditor } from "./rules-editor";
 
 export function EventEditor({ party }: { party: Party }) {
-  const { saveParty, notify } = useStore();
+  const { saveParty, notify, today } = useStore();
   const [draft, setDraft] = useState(() => structuredClone(party));
   const [error, setError] = useState("");
   const dirty = JSON.stringify(draft) !== JSON.stringify(party);
@@ -62,7 +62,7 @@ export function EventEditor({ party }: { party: Party }) {
               onChange={(event) => update({ venue: event.target.value })}
             />
           </Field>
-          <Field label="お店の会計（円）">
+          <Field label={draft.date > today ? "会計の見込み（円）" : "お店の会計（円）"}>
             <input
               required
               type="number"

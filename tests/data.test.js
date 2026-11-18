@@ -302,7 +302,7 @@ for (const moment of moments) {
     assert.equal(collection(active).unpaid.length, 3);
     for (const party of past) {
       assert.equal(weekday(party.date), 5);
-      assert.equal(party.name, seasonalName(party.date));
+      assert.ok(party.name.endsWith(seasonalName(party.date).replace(/^第二営業部 /, "")));
       assert.ok(party.members.length >= 6 && party.members.length <= 18);
       assert.ok(
         party.total / party.members.length >= 4000 && party.total / party.members.length <= 7000,

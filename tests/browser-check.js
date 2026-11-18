@@ -118,22 +118,18 @@ async function main() {
 
     await visit("/backup");
     const saved = await page.evaluate(() => localStorage.getItem("nsa:v1"));
-    await page
-      .locator("#backup-file")
-      .setInputFiles({
-        name: "invalid.json",
-        mimeType: "application/json",
-        buffer: Buffer.from("{}"),
-      });
+    await page.locator("#backup-file").setInputFiles({
+      name: "invalid.json",
+      mimeType: "application/json",
+      buffer: Buffer.from("{}"),
+    });
     await page.getByRole("alert").filter({ hasText: "バックアップ" }).waitFor();
     assert.equal(await page.evaluate(() => localStorage.getItem("nsa:v1")), saved);
-    await page
-      .locator("#backup-file")
-      .setInputFiles({
-        name: "valid.json",
-        mimeType: "application/json",
-        buffer: Buffer.from(saved),
-      });
+    await page.locator("#backup-file").setInputFiles({
+      name: "valid.json",
+      mimeType: "application/json",
+      buffer: Buffer.from(saved),
+    });
     await page.getByRole("button", { name: "この内容で置き換える" }).click();
     assert.equal(await page.evaluate(() => localStorage.getItem("nsa:v1")), saved);
     await page.locator("#backup-file").focus();

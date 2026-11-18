@@ -173,7 +173,7 @@ function EventCard({ party, today }: { party: Party; today: string }) {
         ⌖ {party.venue || "会場未定"} <span> / {party.members.length}名</span>
       </p>
       <div className="card-amount">
-        <span>{upcoming ? "会計予定" : "お店の会計"}</span>
+        <span>{upcoming ? "会計（見込み）" : "お店の会計"}</span>
         <strong>{yen(party.total)}</strong>
       </div>
       {upcoming ? (

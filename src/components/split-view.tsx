@@ -5,8 +5,10 @@ import { shareText, shareUrl } from "@/lib/share";
 import { eventCsv, csvFilename } from "@/lib/csv";
 import type { Party } from "@/lib/types";
 import { CopyButton, download, Empty, yen } from "./ui";
+import { useStore } from "./store";
 
 export function SplitView({ party }: { party: Party }) {
+  const { today } = useStore();
   const result = split(party);
   if (!party.members.length)
     return (
@@ -27,7 +29,7 @@ export function SplitView({ party }: { party: Party }) {
         </div>
         <div className="receipt-details">
           <p>
-            <span>お店の会計</span>
+            <span>{party.date > today ? "会計（見込み）" : "お店の会計"}</span>
             <b>{yen(party.total)}</b>
           </p>
           <p>
