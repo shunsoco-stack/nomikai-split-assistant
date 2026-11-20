@@ -85,6 +85,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
         </main>
         <footer>
           デモ用の架空データです <span>・</span> 幹事ノート
+          <span>・</span> <a href="/privacy">プライバシーポリシー</a>
         </footer>
       </div>
       <nav className="mobile-tabs" aria-label="モバイルナビゲーション">
